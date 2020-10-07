@@ -3,6 +3,7 @@ class Calc{
     constructor(){
         // array of icons to use for buttons icon and id
         this.iconArr = ["AC","+/-","%","/","7","8","9","*","4","5","6","-","1","2","3","+","0",".","="]; 
+        this.numArr = [0];
     }
 
     view(){
@@ -18,7 +19,7 @@ class Calc{
         // creates text field
         let txtField = document.createElement("div");
         txtField.setAttribute("class","col-12 text-right border border-dark");
-        txtField.innerHTML = "0";
+        txtField.innerHTML = this.numArr[0];
 
         // appends txtfield
         row.appendChild(txtField);
@@ -34,6 +35,9 @@ class Calc{
         // appends row to container then container to main
         container.appendChild(row);
         main.appendChild(container);
+
+
+
     }
 
 }
@@ -46,6 +50,7 @@ class makeButton{
         this.doSomething = this.doSomething.bind(this);
     }
 
+    // need a method for operators and one for numbers
     // creates a button
     bake(){
         let col = document.createElement("div");
@@ -64,9 +69,6 @@ class makeButton{
         console.log("pressed: " + this.icon);
     }
 } 
-
-
-
 
 const c = new Calc();
 c.view();
