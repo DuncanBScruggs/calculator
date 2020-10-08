@@ -3,8 +3,9 @@ class Calc{
     constructor(){
         // array of icons to use for buttons icon and id
         this.iconArr = ["AC","+/-","%","/","7","8","9","*","4","5","6","-","1","2","3","+","0",".","="]; 
-        this.numArr = ["7","8","9","4","5","6","1","2","3","0"];
+        // this.numArr = ["7","8","9","4","5","6","1","2","3","0"];
         this.mathArr = [0,0];
+        this.parent = this.parent.bind(this);
     }
 
     view(){
@@ -28,7 +29,7 @@ class Calc{
         // loops through icons to create buttons
         for (var i = 0; i < this.iconArr.length; i++) {
             // console.log(i);
-            let bb = new makeButton(this.iconArr[i]);
+            let bb = new makeButton(this.iconArr[i], this.parent);
             bb.bake();
             row.appendChild(bb.element);
         }
@@ -37,17 +38,21 @@ class Calc{
         container.appendChild(row);
         main.appendChild(container);
 
-        
-        
+
+    }
+    parent(x){
+        console.log("YES", x);
     }
 }
 
 // make a button
 class makeButton{
-    constructor(icon){
+    constructor(icon, method){
         this.icon = icon;
         this.element = null;
         this.doMath = this.doMath.bind(this);
+        // this.mathArr = mathArr;
+        this.method = method
     }
 
     // creates a button
@@ -72,7 +77,9 @@ class makeButton{
 
     // check to see if button is correctly targeted
     doMath(){
-        console.log("pressed: " + this.icon);
+        // console.log("pressed: " + this.icon);
+        this.method(this.icon);
+
     }
 } 
 
